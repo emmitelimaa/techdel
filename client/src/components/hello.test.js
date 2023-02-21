@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Hello from "./hello";
+import Hello from "./Hello";
 
 test("loads and displays greeting", async () => {
   // ARRANGE

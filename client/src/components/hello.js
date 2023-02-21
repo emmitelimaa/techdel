@@ -1,8 +1,7 @@
-import react from "react";
-import "./hello.scss";
+import "./Hello.module.scss";
 
-function hello() {
-  return <h1 role="heading">Hello World</h1>;
+function Hello() {
+  return <h1>Hello World</h1>;
 }
 
-export default hello;
+export default Hello;
