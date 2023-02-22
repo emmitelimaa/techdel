@@ -11,14 +11,24 @@ const con = mysql.createConnection({
   user: DB_USER || "root",
   password: DB_PASS,
   database: DB_NAME || "todos",
-  multipleStatements: true
+  multipleStatements: true,
 });
 
-con.connect(function(err) {
+con.connect(function (err) {
   if (err) throw err;
   console.log("Connected!");
 
-  let sql = "DROP TABLE if exists items; CREATE TABLE items(id INT NOT NULL AUTO_INCREMENT, text VARCHAR(40) not null, complete BOOLEAN, PRIMARY KEY (id));";
+  let sql = `CREATE TABLE company (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,name VARCHAR(100),score INT);
+
+CREATE TABLE repo (
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(100),
+  team_name VARCHAR(100),
+  technology VARCHAR(100),
+  company_id INT NOT NULL,
+  score INT,
+  FOREIGN KEY (company_id) REFERENCES company(id)
+)`;
   con.query(sql, function (err, result) {
     if (err) throw err;
     console.log("Table creation `items` was successful!");
@@ -28,5 +38,3 @@ con.connect(function(err) {
 
   con.end();
 });
-
-

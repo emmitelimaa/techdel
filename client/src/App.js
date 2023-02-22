@@ -8,17 +8,11 @@ import "./App.css";
 function App() {
   const [data, setData] = useState([]);
   useEffect(() => {
-    // declare the async data fetching function
     const fetchData = async () => {
-      // get the data from the api
       const data = await fetch("/api");
-      // convert the data to json
       const json = await data.json();
-      console.log(json);
-      // set state with the result
       setData(json);
     };
-
     // call the function
     fetchData();
   }, []);
