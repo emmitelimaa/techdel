@@ -5,11 +5,31 @@ const sql = require("./helpers");
 /*
 Non Urgent TODOS:
 - Add created and updated date to tables
-- Updated generic col names to be table specific company_name
+- Unit Tests!!!!
+- Figure out ORMs
 */
 
 router.get("/", function (req, res, next) {
   res.send("Welcome to the API");
+});
+router.get("/companies/:id", async (req, res, next) => {
+  const companyId = req.params.id;
+  console.log("HELLO");
+  try {
+    let result = await db(sql.getCompanyById(companyId));
+
+    if (result) {
+      let repos = await db(sql.getRepoById(companyId));
+      if (repos.data.length) {
+        result.data[0].repos = repos.data;
+        res.send(result.data[0]);
+      }
+    } else {
+      res.status(404).send({ msg: "This company does not exist" });
+    }
+  } catch (err) {
+    console.log(`Network Error`);
+  }
 });
 
 /* GET ALL COMPANIES & Repos*/
@@ -40,40 +60,19 @@ router.get("/companies", async (req, res, next) => {
   }
 });
 
-router.get("/companies/:id", async (req, res, next) => {
-  const companyId = req.params.id;
-  try {
-    let result = await db(sql.getCompanyById(companyId));
-
-    if (result) {
-      let repos = await db(sql.getRepoById(companyId));
-      if (repos.length) {
-        result.data[0].repos = repos.data;
-        res.send(result.data[0]);
-      }
-    } else {
-      res.status(404).send({ msg: "This company does not exist" });
-    }
-  } catch (err) {
-    console.log(`Network Error`);
-  }
-});
-
 // {
 //     "companyName": "New Company",
 //     "repo": {"name": "SEVEN","team_name": "Name 2","technology": "HTML"}
 // }
-
 // TODO: Needs Error Handling
 router.post("/companies", async (req, res) => {
   const { company_name, repo } = req.body;
   const company = await db(sql.getCompanyByName(company_name));
-  if (company.length) {
+  if (company.data.length) {
     const companyId = company.data[0].id;
-    if (companyId) {
-      // If Company already exists, add repo information
-      await db(sql.addRepo(repo, companyId));
-    }
+    // If Company already exists, add repo information
+    await db(sql.addRepo(repo[0], companyId));
+
     // return new list of repos
     const data = await db(sql.getAllRepos());
     res.status(201).send(data);

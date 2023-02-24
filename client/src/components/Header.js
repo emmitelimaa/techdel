@@ -1,14 +1,36 @@
-import React from "react";
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
-import "./Header.scss";
+import Avatar from "@mui/material/Avatar";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+// import MenuIcon from "@mui/icons-material/Menu";
+
 export default function Header() {
   return (
-    <>
-      <header>
-        <nav>
-          <Link to="/">Home</Link> | <Link to="/users">Users</Link>
-        </nav>
-      </header>
-    </>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+            {/* <MenuIcon /> */}
+          </IconButton>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Link to="/">Home</Link> | <Link to="/companies">Companies</Link>
+          </Typography>
+          <Avatar sx={{ bgcolor: "red" }}>N</Avatar>
+
+          <Button color="inherit">Login</Button>
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
 }

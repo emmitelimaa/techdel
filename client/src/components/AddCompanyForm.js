@@ -6,6 +6,7 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Unstable_Grid2";
 import FormControl from "@mui/material/FormControl";
+import { CompanyContext } from "../App";
 
 export default function AddCompanyForm(props) {
   const FORM_ENTRY = {
@@ -22,37 +23,10 @@ export default function AddCompanyForm(props) {
   //addCompany
   const handleSubmit = (e) => {
     e.preventDefault();
-    addCompany();
+    props.addCompany(input);
+    setInput(FORM_ENTRY);
   };
 
-  const addCompany = async () => {
-    const formatInput = {
-      company_name: input.company_name,
-      repo: [
-        {
-          repo_name: input.repo_name,
-          team_name: input.team_name,
-          technology: input.technology,
-        },
-      ],
-    };
-
-    let options = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formatInput), //Obj Here
-    };
-
-    try {
-      let response = await fetch("/api/companies", options);
-      if (response.ok) {
-        let listItem = await response.json();
-        setData(listItem);
-      }
-    } catch (err) {
-      console.log(`Server Error`);
-    }
-  };
   return (
     <Container style={{ borderColor: "red" }}>
       <form onSubmit={handleSubmit}>
