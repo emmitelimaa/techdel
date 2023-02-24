@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
+import Typography from "@mui/material/Typography";
 
+import ReposList from "./ReposList";
 import { API } from "../constants";
 export default function CompanyView(props) {
   const { id } = useParams();
   const [company, setCompany] = useState([]);
+  const [isOpen, setIsOpen] = useState(true);
+
+  const toggleDrawer = (open) => (e) => {
+    if (e.type === "keydown" && (e.key === "Tab" || e.key === "Shift")) {
+      return;
+    }
+    setIsOpen(!isOpen);
+  };
 
   const getData = async () => {
     try {
@@ -26,7 +35,12 @@ export default function CompanyView(props) {
   }, [id]);
   return (
     <>
-      <h2>{company.company_name}</h2>
+      <Drawer anchor="right" open={isOpen} onClose={toggleDrawer(isOpen)}>
+        <div style={{ width: "700px", padding: "20px" }}>
+          <Typography variant="h2">{company.company_name}</Typography>
+          {company.repos && <ReposList repos={company.repos} />}
+        </div>
+      </Drawer>
     </>
   );
 }
