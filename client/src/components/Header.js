@@ -7,6 +7,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
+import { URL } from "../constants";
 // import MenuIcon from "@mui/icons-material/Menu";
 
 export default function Header() {
@@ -24,7 +25,8 @@ export default function Header() {
             {/* <MenuIcon /> */}
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link to="/">Home</Link> | <Link to="/companies">Companies</Link>
+            <Link to={URL.HOME}>Home</Link> |{" "}
+            <Link to={URL.COMPANIES}>Companies</Link>
           </Typography>
           <Avatar sx={{ bgcolor: "red" }}>N</Avatar>
 

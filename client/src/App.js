@@ -31,7 +31,6 @@ function App() {
       let response = await fetch(`${API.POST_ALL}`, options);
       if (response.ok) {
         let listItem = await response.json();
-        //setData((state) => ({ ...state, listItem }));
         console.log(listItem);
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);
@@ -44,7 +43,7 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetch("/api/companies");
+      const data = await fetch(`${API.GET_ALL}`);
       const json = await data.json();
       setData(json);
     };

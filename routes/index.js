@@ -14,7 +14,6 @@ router.get("/", function (req, res, next) {
 });
 router.get("/companies/:id", async (req, res, next) => {
   const companyId = req.params.id;
-  console.log("HELLO");
   try {
     let result = await db(sql.getCompanyById(companyId));
 
