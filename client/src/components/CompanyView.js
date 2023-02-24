@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import users from "../database.json";
 
-export default function UserView() {
+export default function CompanyView() {
   const { id } = useParams();
   const user = users.find((user) => +user.id === +id);
   return (

@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import HomeView from "./components/HomeView";
-import UsersView from "./components/UsersView";
-import UserView from "./components/UserView";
+import CompaniesView from "./components/CompaniesView";
+import CompanyView from "./components/CompanyView";
 import Header from "./components/Header";
 import "./App.css";
 
@@ -26,8 +26,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<HomeView addCompany={handleSubmit} />} />
-        <Route path="/users" element={<UsersView />}>
-          <Route path=":id" element={<UserView />} />
+        <Route path="/users" element={<CompaniesView />}>
+          <Route path=":id" element={<CompanyView />} />
         </Route>
       </Routes>
     </div>

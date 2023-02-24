@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Container from "@mui/material/Container";
@@ -14,14 +14,44 @@ export default function AddCompanyForm(props) {
     technology: "",
     company_name: "",
   };
-  const [input, setInput] = React.useState(FORM_ENTRY);
+  const [input, setInput] = useState(FORM_ENTRY);
+  const [data, setData] = useState([]);
   const handleChange = (e) => {
     setInput((state) => ({ ...state, [e.target.name]: e.target.value }));
   };
   //addCompany
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.addCompany(input);
+    addCompany();
+  };
+
+  const addCompany = async () => {
+    const formatInput = {
+      company_name: input.company_name,
+      repo: [
+        {
+          repo_name: input.repo_name,
+          team_name: input.team_name,
+          technology: input.technology,
+        },
+      ],
+    };
+
+    let options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formatInput), //Obj Here
+    };
+
+    try {
+      let response = await fetch("/api/companies", options);
+      if (response.ok) {
+        let listItem = await response.json();
+        setData(listItem);
+      }
+    } catch (err) {
+      console.log(`Server Error`);
+    }
   };
   return (
     <Container style={{ borderColor: "red" }}>
