@@ -13,25 +13,24 @@ router.get("/", function (req, res, next) {
 });
 
 /* GET ALL COMPANIES & Repos*/
-router.get("/companies/", async (req, res, next) => {
+router.get("/companies", async (req, res, next) => {
   try {
     let result = await db(`SELECT * from company`);
     if (result.data.length) {
-      const formattedResult = result.data.map(async (item) => {
-        const repos = await db(
-          `SELECT * from repo WHERE company_id = ${item.id}`
-        );
-
-        if (repos.data.length) {
-          return { ...item, repo: repos };
-        } else {
-          return { ...item };
-        }
-      });
-      console.log("formated Result", formattedResult);
-
-      // let repos = await db(sql.getRepoById(companyId));
-      // result.data[0].repos = repos.data;
+      // Create Map of Promises with Repo data and wait to be resolved
+      const all_repos = await Promise.all(
+        result.data.map(async (item) => {
+          const repos = await db(
+            `SELECT * from repo WHERE company_id = ${item.id}`
+          );
+          return repos.data;
+        })
+      );
+      // Take resolved promise results and format Json object
+      const formattedResult = result.data.map((item, index) => ({
+        ...item,
+        repos: all_repos[index],
+      }));
       res.send(formattedResult);
     } else {
       res.send({ msg: "There is no company data" });
@@ -71,14 +70,20 @@ router.post("/companies", async (req, res) => {
   const company = await db(sql.getCompanyByName(company_name));
   if (company.length) {
     const companyId = company.data[0].id;
-    await db(sql.addRepo(repo, companyId));
+    if (companyId) {
+      // If Company already exists, add repo information
+      await db(sql.addRepo(repo, companyId));
+    }
+    // return new list of repos
     const data = await db(sql.getAllRepos());
     res.status(201).send(data);
   } else {
+    // Company Does not exist - Add it
     await db(sql.addCompany(company_name));
+    // Get newly created ID of company
     const result = await db(sql.getCompanyByName(company_name));
+    // Add Repo
     await db(sql.addRepo(repo, result.data[0].id));
-    console.log(repo);
     const data = await db(sql.getAllRepos());
 
     res.status(201).send(data);
