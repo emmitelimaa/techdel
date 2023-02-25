@@ -28,7 +28,7 @@ export default function AddCompanyForm(props) {
   };
 
   return (
-    <Container style={{ borderColor: "red" }}>
+    <Container>
       <form onSubmit={handleSubmit}>
         <Grid container spacing={2}>
           <Grid sm={12} item>

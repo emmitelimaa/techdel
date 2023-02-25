@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 
 import ReposList from "./ReposList";
 import { API } from "../constants";
-export default function CompanyView(props) {
+export default function CompanyView() {
   const { id } = useParams();
   const [company, setCompany] = useState([]);
   const [isOpen, setIsOpen] = useState(true);
@@ -38,6 +38,9 @@ export default function CompanyView(props) {
       <Drawer anchor="right" open={isOpen} onClose={toggleDrawer(isOpen)}>
         <div style={{ width: "700px", padding: "20px" }}>
           <Typography variant="h2">{company.company_name}</Typography>
+          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+            100,234 Empolyees • blah
+          </Typography>
           {company.repos && <ReposList repos={company.repos} />}
         </div>
       </Drawer>
