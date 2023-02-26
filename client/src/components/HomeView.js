@@ -7,7 +7,9 @@ import "./HomeView.scss";
 export default function HomeView(props) {
   return (
     <main className="home">
-      <section className="women">sdfdsf sdfsdfsd</section>
+      <section className="women">
+        <h2>Does your company Pass the Test?</h2>
+      </section>
 
       <Container></Container>
       <Container>
