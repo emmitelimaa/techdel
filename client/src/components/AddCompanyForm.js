@@ -44,7 +44,6 @@ export default function AddCompanyForm(props) {
       let response = await fetch(`${API.POST_ALL}`, options);
       if (response.ok) {
         let listItem = await response.json();
-        console.log("SAVED", listItem);
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);
       }

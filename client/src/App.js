@@ -5,19 +5,12 @@ import CompaniesView from "./components/CompaniesView";
 import CompanyView from "./components/CompanyView";
 import Header from "./components/Header";
 import { API } from "./constants";
+import useFetch from "./useFetch";
 import "./App.scss";
 function App() {
-  const [data, setData] = useState([]);
+  const { data, loading, error } = useFetch(`${API.GET_ALL}`);
+  console.log(data);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetch(`${API.GET_ALL}`);
-      const results = await data.json();
-      setData(results);
-    };
-    // call the function
-    fetchData();
-  }, []);
   return (
     <div className="App">
       <Header />
