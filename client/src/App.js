@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { useEffect, useState } from "react";
+
 import HomeView from "./components/HomeView";
 import CompaniesView from "./components/CompaniesView";
 import CompanyView from "./components/CompanyView";
