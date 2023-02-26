@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import Drawer from "@mui/material/Drawer";
 import Typography from "@mui/material/Typography";
 
-import ReposList from "./ReposList";
-import { API } from "../constants";
+import ReposList from "../ReposList";
+import { API } from "../../constants";
 export default function CompanyView() {
   const { id } = useParams();
   const [company, setCompany] = useState([]);
