@@ -1,6 +1,5 @@
 module.exports = {
   addRepo: (repo, guid) => {
-    console.log(repo);
     return `INSERT INTO repo(repo_name, team_name,technology, company_id, repo_score) VALUES ('${repo.repo_name}','${repo.team_name}', '${repo.technology}','${guid}', null) `;
   },
   getAllRepos: () => `SELECT * from repo`,

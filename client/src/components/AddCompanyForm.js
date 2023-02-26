@@ -8,7 +8,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 
 import { API } from "../constants";
 
-export default function AddCompanyForm(props) {
+export default function AddCompanyForm() {
   const FORM_ENTRY = {
     repo_name: "",
     team_name: "",
@@ -16,13 +16,11 @@ export default function AddCompanyForm(props) {
     company_name: "",
   };
   const [input, setInput] = useState(FORM_ENTRY);
-  const [data, setData] = useState([]);
   const handleChange = (e) => {
     setInput((state) => ({ ...state, [e.target.name]: e.target.value }));
   };
 
   const addCompany = async (input) => {
-    console.log("INPUT", input);
     const { company_name, repo_name, team_name, technology } = input;
     const formatInput = {
       company_name,

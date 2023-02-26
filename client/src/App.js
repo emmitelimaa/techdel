@@ -9,7 +9,6 @@ import useFetch from "./useFetch";
 import "./App.scss";
 function App() {
   const { data, loading, error } = useFetch(`${API.GET_ALL}`);
-  console.log(data);
 
   return (
     <div className="App">
