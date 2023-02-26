@@ -9,13 +9,12 @@ import useFetch from "./useFetch";
 import "./App.scss";
 function App() {
   const { data, loading, error } = useFetch(`${API.GET_ALL}`);
-
   return (
     <div className="App">
       <Header />
       <Routes>
         <Route path="/" element={<HomeView />} />
-        <Route path="/companies" element={<CompaniesView companies={data} />}>
+        <Route path="/companies" element={<CompaniesView />}>
           <Route path=":id" element={<CompanyView companies={data} />} />
         </Route>
       </Routes>

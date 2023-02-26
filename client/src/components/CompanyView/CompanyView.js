@@ -16,10 +16,14 @@ export default function CompanyView() {
     }
     setIsOpen(!isOpen);
   };
+  document.addEventListener("onDrawerOpen", (e) => {
+    setIsOpen(!isOpen);
+    getData(e.detail);
+  });
 
-  const getData = async () => {
+  const getData = async (companyId) => {
     try {
-      let response = await fetch(API.GET_COMPANY(id));
+      let response = await fetch(API.GET_COMPANY(companyId));
       if (response.ok) {
         let listItem = await response.json();
         setCompany(listItem);
@@ -31,15 +35,15 @@ export default function CompanyView() {
     }
   };
   useEffect(() => {
-    getData();
+    getData(id);
   }, [id]);
   return (
     <>
       <Drawer anchor="right" open={isOpen} onClose={toggleDrawer(isOpen)}>
         <div style={{ width: "700px", padding: "20px" }}>
-          <Typography variant="h2">{company.company_name}</Typography>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            100,234 Empolyees • blah
+          <Typography variant="h3">{company.company_name}</Typography>
+          <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
+            100,234 Empolyees • Date Added: {company.date_created}
           </Typography>
           {company.repos && <ReposList repos={company.repos} />}
         </div>
