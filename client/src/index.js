@@ -10,6 +10,9 @@ const theme = createTheme({
   typography: {
     fontFamily: "Open Sans, sans-serif;",
   },
+  palette: {
+    primary: { main: "#C92C6D", secondary: "#609EA2" },
+  },
 });
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
