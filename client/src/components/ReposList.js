@@ -13,11 +13,11 @@ export default function ReposList(props) {
       {props.repos.map((repo) => (
         <ListItem key={repo.id}>
           <ListItemAvatar>
-            <Avatar sx={{ bgcolor: "red" }}>N</Avatar>
+            <Avatar sx={{ bgcolor: "#332C39" }}>N</Avatar>
           </ListItemAvatar>
           <ListItemText
             primary={repo.repo_name}
-            secondary={`Jan 9, 2014 • ${repo.team_name}`}
+            secondary={`<strong>Date Added:</strong> ${repo.created_date} • <strong>Team Name:</strong> • {})`}
           />
         </ListItem>
       ))}

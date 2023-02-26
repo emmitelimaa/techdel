@@ -1,13 +1,15 @@
 .home {
-
+margin-top: 16px;
   section {
     width: 100%;
-    height: 600px;
+    // height: 600px;
+
 
   }
 
   .women {
-    background:url('~/images/women.jpg')no-repeat;
-    background-size: contain;
+    // background:url('~/images/women.jpg')no-repeat;
+    // background-size: contain;
+    background: #609EA2;
   }
 }
