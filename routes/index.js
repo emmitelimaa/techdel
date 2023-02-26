@@ -39,7 +39,7 @@ router.get("/companies", async (req, res, next) => {
       // Create Map of Promises with Repo data and wait to be resolved
       const all_repos = await Promise.all(
         result.data.map(async (item) => {
-          const repos = await db(sql.getCompanyById(item.id));
+          const repos = await db(sql.getRepoById(item.id));
           return repos.data;
         })
       );

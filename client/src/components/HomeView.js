@@ -11,7 +11,6 @@ export default function HomeView(props) {
         <h2>Does your company Pass the Test?</h2>
       </section>
 
-      <Container></Container>
       <Container>
         <AddCompanyForm addCompany={props.addCompany} />
       </Container>
