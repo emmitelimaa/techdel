@@ -8,7 +8,7 @@ import Avatar from "@mui/material/Avatar";
 import { formatDate } from "../helpers";
 export default function ReposList(props) {
   return (
-    <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
+    <List sx={{ width: "100%", maxWidth: 500, bgcolor: "background.paper" }}>
       <Typography variant="h5">Repos</Typography>
       {props.repos.map((repo) => (
         <ListItem key={repo.id}>

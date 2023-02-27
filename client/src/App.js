@@ -8,7 +8,6 @@ import { API } from "./constants";
 import useFetch from "./useFetch";
 import "./App.scss";
 function App() {
-  const { data, loading, error } = useFetch(`${API.GET_ALL}`);
   return (
     <div className="App">
       <Header />

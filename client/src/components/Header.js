@@ -1,7 +1,5 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
@@ -19,19 +17,22 @@ export default function Header() {
       <AppBar position="static">
         <Toolbar>
           <Link style={{ color: "#fff", textDecoration: "none" }} to={URL.HOME}>
-            <div className="logo">Techdel Test</div>
+            <div className="logo">
+              Techdel Test
+              <span className="subtext"> The Bechdel Test for Tech</span>
+            </div>
           </Link>
 
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, marginLeft: 20 }}
+            sx={{ textAlign: "right", flexGrow: 1, marginRight: 10 }}
           >
             <Link
-              style={{ color: "#fff", textDecoration: "none" }}
+              style={{ color: "#F5E9CF", textDecoration: "none" }}
               to={URL.COMPANIES}
             >
-              Companies
+              View Companies
             </Link>
           </Typography>
 

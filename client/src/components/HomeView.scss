@@ -1,15 +1,24 @@
 .home {
-margin-top: 16px;
+  margin-top: 16px;
   section {
     width: 100%;
-    // height: 600px;
-
-
+    //height: 100vh;
+   height: 600px;
   }
-
+  ol {
+    margin-bottom: 40px;
+  }
+  ol li {
+    font-size: 25px;
+    margin-bottom: 15px;;
+  }
   .women {
     // background:url('~/images/women.jpg')no-repeat;
     // background-size: contain;
-    background: #609EA2;
+    background: #7DB9B6;
+  }
+
+  .second{
+    background: #F5E9CF;
   }
 }

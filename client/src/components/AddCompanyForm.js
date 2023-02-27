@@ -21,8 +21,12 @@ export default function AddCompanyForm() {
   const [input, setInput] = useState(FORM_ENTRY);
   const [showSuccess, setShowSuccess] = useState(false);
   const handleChange = (e) => {
-    setInput((state) => ({ ...state, [e.target.name]: e.target.value }));
+    setInput((state) => ({
+      ...state,
+      [e.target.name]: e.target.value,
+    }));
   };
+
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
@@ -76,6 +80,10 @@ export default function AddCompanyForm() {
         </Snackbar>
         <Grid container spacing={2}>
           <Grid sm={12} item>
+            <Typography variant="h5">Company:</Typography>
+          </Grid>
+
+          <Grid sm={12} item>
             <TextField
               label="Company Name"
               variant="outlined"
@@ -92,7 +100,7 @@ export default function AddCompanyForm() {
           </Grid>
           <Grid sm={6} item>
             <TextField
-              label="Codebase/Repo Name"
+              label="Repo Name"
               variant="outlined"
               fullWidth
               margin="normal"
@@ -118,7 +126,34 @@ export default function AddCompanyForm() {
               value={input.technology}
             />
           </Grid>
-          <Grid sm={6} item></Grid>
+          <Grid sm={12} item>
+            {/*   <Typography variant="h6">
+              The Criteria (Select All that Apply)
+            </Typography>
+
+           <FormGroup>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    name="questionOne"
+                    checked={input.questionOne}
+                    onChange={handleChange}
+                  />
+                }
+                label="This codebase has at least two functions or classes that is written by two separate female engineers."
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    name="questionTwo"
+                    checked={input.questionTwo}
+                    onChange={handleChange}
+                  />
+                }
+                label="These two functions call each other"
+              />
+            </FormGroup> */}
+          </Grid>
           <Grid sm={12} item>
             <Button size="large" variant="contained" type="submit">
               Submit

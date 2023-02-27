@@ -5,11 +5,8 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import CardActionArea from "@mui/material/CardActionArea";
-/*
- <Link to={`/companies/${company.id}`}>
-                  {company.company_name}
-                </Link>
-*/
+import BusinessIcon from "@mui/icons-material/Business";
+import DataObjectIcon from "@mui/icons-material/DataObject";
 
 export default function CompanyCard(props) {
   return (
@@ -24,8 +21,11 @@ export default function CompanyCard(props) {
             >
               Public / Private
             </Typography>
-            <Typography variant="h5">
-              {props.companyInfo.company_name}
+            <Typography variant="h6" className="truncate-single">
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <BusinessIcon style={{ marginRight: 10 }}></BusinessIcon>{" "}
+                {props.companyInfo.company_name}
+              </div>
             </Typography>
             <Typography sx={{ mb: 1.5 }} color="text.secondary">
               {props.companyInfo.repos.length} Repos

@@ -1,12 +1,9 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
-import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Unstable_Grid2";
 
 import Container from "@mui/material/Container";
 import CompanyCard from "./CompanyCard";
-import { useParams } from "react-router-dom";
-
 import { URL, API } from "../constants";
 import useFetch from "../useFetch";
 
@@ -19,9 +16,7 @@ export default function CompaniesView() {
   return (
     <>
       <Container>
-        <Typography variant="h5" component="h2">
-          Company List
-        </Typography>
+        <h2 className="emphasis">Company Registry </h2>
         <Grid container spacing={2}>
           {data &&
             data.map((company) => (
