@@ -7,3 +7,18 @@ export const formatDate = (inputDate) => {
   year = formatD.getFullYear();
   return `${date}/${month}/${year}`;
 };
+
+export const transformData = (data) => {
+  const { company_name, repo_name, team_name, technology } = data;
+  const formatInput = {
+    company_name,
+    repo: [
+      {
+        repo_name,
+        team_name,
+        technology,
+      },
+    ],
+  };
+  return formatInput;
+};

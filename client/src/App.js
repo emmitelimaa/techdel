@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomeView />} />
         <Route path="/companies" element={<CompaniesView />}>
-          <Route path=":id" element={<CompanyView companies={data} />} />
+          <Route path=":id" element={<CompanyView />} />
         </Route>
       </Routes>
     </div>

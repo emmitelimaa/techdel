@@ -7,8 +7,8 @@ import useFetch from "../../useFetch";
 export default function CompanyView() {
   const { id } = useParams();
   const [isOpen, setIsOpen] = useState(true);
+
   const { data } = useFetch(API.GET_COMPANY(id), [id]);
-  console.log("data", data);
   document.addEventListener("onDrawerOpen", (e) => {
     setIsOpen(!isOpen);
   });

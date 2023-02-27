@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Container from "@mui/material/Container";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Unstable_Grid2";
-
+import { transformData } from "../helpers";
 import { API } from "../constants";
+import TechnologyDropdown from "./TechnologyDropdown";
 
 export default function AddCompanyForm() {
   const FORM_ENTRY = {
@@ -16,32 +19,31 @@ export default function AddCompanyForm() {
     company_name: "",
   };
   const [input, setInput] = useState(FORM_ENTRY);
+  const [showSuccess, setShowSuccess] = useState(false);
   const handleChange = (e) => {
     setInput((state) => ({ ...state, [e.target.name]: e.target.value }));
   };
-
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setShowSuccess(false);
+  };
+  const handleAutoComplete = (val) => {
+    setInput((state) => ({ ...state, technology: val }));
+  };
   const addCompany = async (input) => {
-    const { company_name, repo_name, team_name, technology } = input;
-    const formatInput = {
-      company_name,
-      repo: [
-        {
-          repo_name,
-          team_name,
-          technology,
-        },
-      ],
-    };
     try {
       let options = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formatInput),
+        body: JSON.stringify(transformData(input)),
       };
 
       let response = await fetch(`${API.POST_ALL}`, options);
       if (response.ok) {
         let listItem = await response.json();
+        setShowSuccess(true);
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);
       }
@@ -59,12 +61,26 @@ export default function AddCompanyForm() {
   return (
     <Container>
       <form onSubmit={handleSubmit}>
+        <Snackbar
+          open={showSuccess}
+          autoHideDuration={6000}
+          onClose={handleClose}
+        >
+          <Alert
+            onClose={handleClose}
+            severity="success"
+            sx={{ width: "100%" }}
+          >
+            Your Request was successfully submitted!
+          </Alert>
+        </Snackbar>
         <Grid container spacing={2}>
           <Grid sm={12} item>
             <TextField
               label="Company Name"
               variant="outlined"
               fullWidth
+              required
               margin="normal"
               name="company_name"
               value={input.company_name}
@@ -97,14 +113,9 @@ export default function AddCompanyForm() {
             />
           </Grid>
           <Grid sm={6} item>
-            <TextField
-              label="Code"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-              name="technology"
+            <TechnologyDropdown
+              onSelect={handleAutoComplete}
               value={input.technology}
-              onChange={handleChange}
             />
           </Grid>
           <Grid sm={6} item></Grid>
