@@ -1,18 +1,9 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
-
 import Drawer from "@mui/material/Drawer";
 
+import { formatDate } from "../helpers";
 export default function CompanyDrawer({ children, company, isOpen, onClose }) {
-  const formatDate = (inputDate) => {
-    const formatD = new Date(inputDate);
-    let date, month, year;
-
-    date = formatD.getDate();
-    month = formatD.getMonth() + 1;
-    year = formatD.getFullYear();
-    return `${date}/${month}/${year}`;
-  };
   return (
     <Drawer anchor="right" open={isOpen} onClose={onClose}>
       {company && (
