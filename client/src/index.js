@@ -11,7 +11,7 @@ const theme = createTheme({
     fontFamily: "Open Sans, sans-serif;",
   },
   palette: {
-    primary: { main: "#C92C6D", secondary: "#609EA2" },
+    primary: { main: "#4D455D", secondary: "#E96479" },
   },
 });
 const root = ReactDOM.createRoot(document.getElementById("root"));

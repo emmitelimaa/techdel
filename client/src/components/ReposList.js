@@ -5,7 +5,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
-
+import { formatDate } from "../helpers";
 export default function ReposList(props) {
   return (
     <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
@@ -17,7 +17,11 @@ export default function ReposList(props) {
           </ListItemAvatar>
           <ListItemText
             primary={repo.repo_name}
-            secondary={`<strong>Date Added:</strong> ${repo.created_date} • <strong>Team Name:</strong> • {})`}
+            secondary={`Date Added: ${formatDate(
+              repo.created_date
+            )} • Team Name: ${repo.team_name} • Primary Technology: ${
+              repo.technology
+            }`}
           />
         </ListItem>
       ))}

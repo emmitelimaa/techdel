@@ -18,20 +18,15 @@ export default function Header() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <div className="logo">Techdel Test</div>
+          <Link style={{ color: "#fff", textDecoration: "none" }} to={URL.HOME}>
+            <div className="logo">Techdel Test</div>
+          </Link>
 
           <Typography
             variant="h6"
             component="div"
             sx={{ flexGrow: 1, marginLeft: 20 }}
           >
-            <Link
-              style={{ color: "#fff", textDecoration: "none" }}
-              to={URL.HOME}
-            >
-              Home
-            </Link>
-            |
             <Link
               style={{ color: "#fff", textDecoration: "none" }}
               to={URL.COMPANIES}
