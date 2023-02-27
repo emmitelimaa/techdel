@@ -11,7 +11,7 @@ export default function HomeView(props) {
       <section className="women">
         <Container>
           <Grid container spacing={2}>
-            <Grid sm={6}>
+            <Grid sm={6} item>
               <h2>Does your codebase the Test?</h2>
               <ul>
                 <li>
@@ -20,7 +20,7 @@ export default function HomeView(props) {
                 <li>Question Two</li>
               </ul>
             </Grid>
-            <Grid sm={6} style={{ background: "#fff", padding: 20 }}>
+            <Grid item sm={6} style={{ background: "#fff", padding: 20 }}>
               <AddCompanyForm addCompany={props.addCompany} />
             </Grid>
           </Grid>
