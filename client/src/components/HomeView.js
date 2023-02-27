@@ -31,7 +31,7 @@ export default function HomeView(props) {
               <ol>
                 <li>
                   It has to have at least two functions written by two separate
-                  womenX engineers.
+                  women+ engineers.
                 </li>
                 <li>These two functions call each other</li>
               </ol>
