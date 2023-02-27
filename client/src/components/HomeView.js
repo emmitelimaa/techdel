@@ -1,8 +1,6 @@
 import React from "react";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import { URL } from "../constants";

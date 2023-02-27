@@ -8,7 +8,7 @@ export default function CompanyView() {
   const { id } = useParams();
   const [isOpen, setIsOpen] = useState(true);
 
-  const { data } = useFetch(API.GET_COMPANY(id), [id]);
+  const { data } = useFetch(API.GET_COMPANY(id), [id], null);
   document.addEventListener("onDrawerOpen", (e) => {
     setIsOpen(!isOpen);
   });
