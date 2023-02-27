@@ -19,7 +19,7 @@ export default function CompanyCard(props) {
               color="text.secondary"
               gutterBottom
             >
-              Public / Private
+              Private
             </Typography>
             <Typography variant="h6" className="truncate-single">
               <div style={{ display: "flex", alignItems: "center" }}>

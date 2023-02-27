@@ -8,7 +8,7 @@ import { URL, API } from "../constants";
 import useFetch from "../useFetch";
 
 export default function CompaniesView() {
-  const { data, loading, error } = useFetch(`${API.GET_ALL}`);
+  const { data } = useFetch(`${API.GET_ALL}`);
   const handleClick = (e, id) => {
     const event = new CustomEvent("onDrawerOpen", { detail: id });
     document.dispatchEvent(event);

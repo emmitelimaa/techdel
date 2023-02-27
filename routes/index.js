@@ -2,12 +2,6 @@ var express = require("express");
 var router = express.Router();
 const db = require("../model/helper");
 const sql = require("./helpers");
-/*
-Non Urgent TODOS:
-- Add created and updated date to tables
-- Unit Tests!!!!
-- Figure out ORMs
-*/
 
 router.get("/", function (req, res, next) {
   res.send("Welcome to the API");
@@ -57,11 +51,6 @@ router.get("/companies", async (req, res, next) => {
   }
 });
 
-// {
-//     "companyName": "New Company",
-//     "repo": {"name": "SEVEN","team_name": "Name 2","technology": "HTML"}
-// }
-// TODO: Needs Error Handling
 router.post("/companies", async (req, res) => {
   const { company_name, repo } = req.body;
   const company = await db(sql.getCompanyByName(company_name));
