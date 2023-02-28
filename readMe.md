@@ -11,36 +11,27 @@
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
 
-[![Contributors][contributors-shield]][contributors-url]
+<!-- [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+[![LinkedIn][linkedin-shield]][linkedin-url] -->
 
 <!-- PROJECT LOGO -->
 <br />
-<div align="center">
+<div>
 
-<h3 align="center">Techdel Test</h3>
+<h3 >Techdel Test</h3>
 
-  <p align="center">
+  <p>
     A web application used to track the codebases or projects that pass the Techdel Test. 
-    
+  </p>
+  <p>
     The Techdel Test is based off of the Bechdel Test, or Bechdel-Wallace Test, which is a simple test which names the following three criteria: (1) it has to have at least two women in it, who (2) who talk to each other, about (3) something besides a man.
-
+  </p>
+  <p>
     A Techdel Test, is a method of measuring the influence and impact that folks who identify as womenX have on a codebase. To pass the test, (1) Two separate womenX engineers have to write to different functions or methods in production code. (2) These functions or methods call each other
-
-<!--
-    <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a> -->
 
   </p>
 </div>
