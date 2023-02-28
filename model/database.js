@@ -18,7 +18,13 @@ con.connect(function (err) {
   if (err) throw err;
   console.log("Connected!");
 
-  let sql = `CREATE TABLE company (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,name VARCHAR(100),score INT);
+  let sql = `
+CREATE TABLE company (
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(100),
+  score INT, 
+  modified_date datetime DEFAULT CURRENT_TIMESTAMP, 
+  created_date datetime DEFAULT CURRENT_TIMESTAMP);
 
 CREATE TABLE repo (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -26,6 +32,8 @@ CREATE TABLE repo (
   team_name VARCHAR(100),
   technology VARCHAR(100),
   company_id INT NOT NULL,
+  modified_date datetime DEFAULT CURRENT_TIMESTAMP, 
+  created_date datetime DEFAULT CURRENT_TIMESTAMP
   score INT,
   FOREIGN KEY (company_id) REFERENCES company(id)
 )`;
