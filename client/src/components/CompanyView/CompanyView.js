@@ -8,7 +8,8 @@ export default function CompanyView() {
   const { id } = useParams();
   const [isOpen, setIsOpen] = useState(true);
 
-  const { data } = useFetch(API.GET_COMPANY(id), [id], null);
+  const { data, error } = useFetch(API.GET_COMPANY(id), [id], null);
+  console.log(error);
   document.addEventListener("onDrawerOpen", (e) => {
     setIsOpen(!isOpen);
   });
@@ -21,6 +22,8 @@ export default function CompanyView() {
 
   return (
     <>
+      <div>Hello</div>
+      {error && <h1 role="heading">error</h1>}
       {data && (
         <CompanyDrawer
           isOpen={isOpen}

@@ -15,18 +15,18 @@ export default function HomeView(props) {
         <Container>
           <Grid container spacing={2}>
             <Grid sm={6} item>
-              <h2 className="emphasis">
+              <h2 className="emphasis" style={{ textAlign: "center" }}>
                 <CodeIcon
                   style={{
                     width: 40,
                     height: 40,
-                    position: "absolute",
-                    left: 350,
+
                     color: "#E96479",
                   }}
                 />
                 <br />
-                Does your codebase pass the test?
+                Does your codebase
+                <br /> pass the test?
               </h2>
               <ol>
                 <li>
@@ -55,8 +55,22 @@ export default function HomeView(props) {
         <Container>
           <Grid container spacing={2}>
             <Grid sm={6} item>
-              <h2 className="emphasis">Why?</h2>
+              <h2 className="emphasis">What is a Techdel Test?</h2>
+              <p>
+                Based off of Bechdel Test, or Bechdel-Wallace Test, is a simple
+                test which names the following three criteria: (1) it has to
+                have at least two women in it, who (2) who talk to each other,
+                about (3) something besides a man.
+              </p>
+              <p>
+                A Techdel Test, is a method of measuring the influence and
+                impact that folks who identify as women+ have on a codebase. To
+                pass the test, (1) Two separate women+ engineers have to write
+                to different functions or methods in production code. (2) These
+                functions or methods call each other
+              </p>
             </Grid>
+            <Grid sm={6} item></Grid>
           </Grid>
         </Container>
       </section>

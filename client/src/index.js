@@ -8,6 +8,12 @@ import { BrowserRouter } from "react-router-dom";
 const theme = createTheme({
   typography: {
     fontFamily: "Open Sans, sans-serif;",
+    poster: {
+      fontFamily: "Sansita Swashed",
+      fontSize: 35,
+      margin: 10,
+      color: "#4D455D",
+    },
   },
   palette: {
     primary: { main: "#4D455D", secondary: "#E96479" },
