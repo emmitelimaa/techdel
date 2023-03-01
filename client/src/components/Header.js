@@ -17,10 +17,8 @@ export default function Header() {
       <AppBar position="static">
         <Toolbar>
           <Link style={{ color: "#fff", textDecoration: "none" }} to={URL.HOME}>
-            <div className="logo">
-              Techdel Test
-              <span className="subtext"> The Bechdel Test for Tech</span>
-            </div>
+            <Typography variant="logo">Techdel Test</Typography>
+            <span className="subtext"> The Bechdel Test for Tech</span>
           </Link>
 
           <Typography

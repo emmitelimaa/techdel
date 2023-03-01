@@ -2,6 +2,7 @@ import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import Grid from "@mui/material/Unstable_Grid2";
 import Typography from "@mui/material/Typography";
+import Alert from "@mui/material/Alert";
 
 import Container from "@mui/material/Container";
 import CompanyCard from "./CompanyCard";
@@ -9,7 +10,7 @@ import { URL, API } from "../constants";
 import useFetch from "../useFetch";
 
 export default function CompaniesView() {
-  const { data } = useFetch(`${API.GET_ALL}`);
+  const { data, error } = useFetch(`${API.GET_ALL}`);
   const handleClick = (e, id) => {
     const event = new CustomEvent("onDrawerOpen", { detail: id });
     document.dispatchEvent(event);
@@ -43,6 +44,7 @@ export default function CompaniesView() {
       </Container>
 
       <Outlet />
+      {error && <Alert severity="error">{error}</Alert>}
     </>
   );
 }

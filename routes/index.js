@@ -21,7 +21,7 @@ router.get("/companies/:id", async (req, res, next) => {
       res.status(404).send({ msg: "This company does not exist" });
     }
   } catch (err) {
-    console.log(`Network Error`);
+    console.log(err, `Network Error`);
   }
 });
 

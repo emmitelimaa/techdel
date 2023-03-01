@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import ReposList from "../ReposList";
 import { API } from "../../constants";
 import CompanyDrawer from "../CompanyDrawer";
+import Alert from "@mui/material/Alert";
+
 import useFetch from "../../useFetch";
 export default function CompanyView() {
   const { id } = useParams();
@@ -22,8 +24,7 @@ export default function CompanyView() {
 
   return (
     <>
-      <div>Hello</div>
-      {error && <h1 role="heading">error</h1>}
+      {error && <Alert severity="error">{error}</Alert>}
       {data && (
         <CompanyDrawer
           isOpen={isOpen}

@@ -5,14 +5,23 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
+
+const fontFamilyPoster = "Sansita Swashed";
 const theme = createTheme({
   typography: {
     fontFamily: "Open Sans, sans-serif;",
     poster: {
-      fontFamily: "Sansita Swashed",
+      fontFamily: fontFamilyPoster,
       fontSize: 35,
       margin: 10,
       color: "#4D455D",
+    },
+    logo: {
+      fontFamily: fontFamilyPoster,
+      fontSize: 30,
+      letterSpacing: 1,
+      padding: 10,
+      color: "#E96479",
     },
   },
   palette: {
