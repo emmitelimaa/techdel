@@ -11,14 +11,11 @@ router.get("/companies/:id", async (req, res, next) => {
   try {
     let result = await db(sql.getCompanyById(companyId));
 
-    if (result) {
-      let repos = await db(sql.getRepoById(companyId));
-      if (repos.data.length) {
-        result.data[0].repos = repos.data;
-        res.send(result.data[0]);
-      }
+    if(result.data.length !==0){
+      res.send(result.data);
+
     } else {
-      res.status(404).send({ msg: "This company does not exist" });
+      res.status(404).send({ error: "This company does not exist" });
     }
   } catch (err) {
     console.log(err, `Network Error`);
@@ -26,53 +23,79 @@ router.get("/companies/:id", async (req, res, next) => {
 });
 
 /* GET ALL COMPANIES & Repos*/
-router.get("/companies", async (req, res, next) => {
+router.get("/companiesrepos", async (req, res, next) => {
   try {
-    let result = await db(sql.getAllCompanies());
+    let result = await db(sql.getAllCompaniesRepos());
     if (result.data.length) {
-      // Create Map of Promises with Repo data and wait to be resolved
-      const all_repos = await Promise.all(
-        result.data.map(async (item) => {
-          const repos = await db(sql.getRepoById(item.id));
-          return repos.data;
-        })
-      );
-      // Take resolved promise results and format Json object
-      const formattedResult = result.data.map((item, index) => ({
-        ...item,
-        repos: all_repos[index],
-      }));
-      res.send(formattedResult);
+
+      res.send(result.data)
+
     } else {
-      res.send({ msg: "There is no company data" });
+      res.send({ error: "There is no company data" });
     }
   } catch (err) {
     console.log(`Network Error`);
   }
 });
 
-router.post("/companies", async (req, res) => {
-  const { company_name, repo } = req.body;
-  const company = await db(sql.getCompanyByName(company_name));
-  if (company.data.length) {
-    const companyId = company.data[0].id;
-    // If Company already exists, add repo information
-    await db(sql.addRepo(repo[0], companyId));
+//get all comapnies
+router.get("/companies", async (req, res, next) => {
+  try {
+    let result = await db("SELECT * FROM companies;");
 
-    // return new list of repos
-    const data = await db(sql.getAllRepos());
-    res.status(201).send(data);
-  } else {
-    // Company Does not exist - Add it
-    await db(sql.addCompany(company_name));
-    // Get newly created ID of company
-    const result = await db(sql.getCompanyByName(company_name));
-    // Add Repo
-    await db(sql.addRepo(repo[0], result.data[0].id));
-    const data = await db(sql.getAllRepos());
+    if (result.data.length !== 0) {
+      res.send(result.data);
 
-    res.status(201).send(data);
+    } else {
+      res.send({ error: "There is no company data" });
+    }
+  } catch (err) {
+    console.log(`Network Error`);
   }
 });
+
+//insert a company
+router.post("/companies", async (req, res) => {
+  const { company_name } = req.body;
+  
+  try {
+    await db(sql.addCompany());
+
+    let result = await db(sql.getAllCompanies)
+    res.send(result.data);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
+
+
+// router.post("/companies", async (req, res) => {
+//   const { company_name, repo } = req.body;
+//   const company = await db(sql.getCompanyByName(company_name));
+//   if (company.data.length) {
+//     const companyId = company.data[0].id;
+//     // If Company already exists, add repo information
+    
+//       await db(sql.addRepo(repo[0], companyId));
+    
+
+//     // return new list of repos
+//     const data = await db(sql.getAllRepos());
+//     res.status(201).send(data);
+//   } else {
+//     // Company Does not exist - Add it
+//     await db(sql.addCompany(company_name));
+//     // Get newly created ID of company
+//     const result = await db(sql.getCompanyByName(company_name));
+//     // Add Repo
+    
+//       await db(sql.addRepo(repo[0], result.data[0].id));
+//       const data = await db(sql.getAllRepos());
+    
+
+//     res.status(201).send(data);
+//   }
+// });
 
 module.exports = router;

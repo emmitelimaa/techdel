@@ -33,9 +33,13 @@ export default function AddCompanyForm() {
     }
     setShowSuccess(false);
   };
+
+  
   const handleAutoComplete = (val) => {
     setInput((state) => ({ ...state, technology: val }));
   };
+
+
   const addCompany = async (input) => {
     try {
       let options = {
@@ -47,6 +51,7 @@ export default function AddCompanyForm() {
       let response = await fetch(`${API.POST_ALL}`, options);
       if (response.ok) {
         let listItem = await response.json();
+        //not showing anything after the POST? maybe don't need the line above?
         setShowSuccess(true);
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);

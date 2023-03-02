@@ -1,20 +1,20 @@
-DROP TABLE IF EXISTS company;
+DROP TABLE IF EXISTS companies;
 
-CREATE TABLE company (
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  name VARCHAR(100),
+CREATE TABLE companies (
+  company_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  company_name VARCHAR(100),
   modified_date datetime DEFAULT CURRENT_TIMESTAMP, 
   created_date datetime DEFAULT CURRENT_TIMESTAMP
 );
-DROP TABLE IF EXISTS repo;
+DROP TABLE IF EXISTS repos;
 
-CREATE TABLE repo (
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  name VARCHAR(100),
+CREATE TABLE repos (
+  repo_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  repo_name VARCHAR(100),
   team_name VARCHAR(100),
   technology VARCHAR(100),
   company_id INT NOT NULL,
   modified_date datetime DEFAULT CURRENT_TIMESTAMP, 
   created_date datetime DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (company_id) REFERENCES company(id)
+  FOREIGN KEY (company_id) REFERENCES companies(company_id)
 )
