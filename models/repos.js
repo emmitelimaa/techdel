@@ -15,8 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Repos.init({
-    repo_name: DataTypes.STRING,
-    
+    repo_name: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Repos',

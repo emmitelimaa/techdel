@@ -1,7 +1,0 @@
-
-DELIMITER $$
-CREATE PROCEDURE `getAllCompanies`()
-BEGIN
-  SELECT * FROM company;
-END$$
-DELIMITER;
