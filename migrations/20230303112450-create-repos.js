@@ -12,6 +12,12 @@ module.exports = {
       repo_name: {
         type: Sequelize.STRING
       },
+      team_name: {
+        type: Sequelize.STRING
+      },
+      technology: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
