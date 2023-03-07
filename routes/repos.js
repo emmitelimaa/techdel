@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 const models = require("../models");
 
-//GET
+//----------GET------------
 
 router.get("/", async (req, res) => {
     try {
@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
 });
 
 
-//POST
+//------------POST---------------
 router.post('/', async function(req, res) {
     let { repo_name, team_name, technology, company_id } = req.body;
 
@@ -30,12 +30,12 @@ router.post('/', async function(req, res) {
 //create company if it doesn't exists, and create repos to that company
 router.post("/:id/repos", async (req, res) => {
     const { id } = req.params;
-    const { repo_name, team_name, technology } = req.body;
+    const { repo_name, team_name, technology, company_name } = req.body;
 
     try {
         const [company, created] = await models.Companies.findOrCreate({
             where: {
-                id, 
+                company_name, 
             },
         });
 
@@ -45,9 +45,9 @@ router.post("/:id/repos", async (req, res) => {
             technology,
         });
 
-        res.send({ company, repo });
+        res.status(201).send({ company, repo });
     } catch (error) {
-        res.status(500).send(error);
+        res.status(500).send({ error: err.message });
     }
 });
 
