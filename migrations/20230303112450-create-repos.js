@@ -10,7 +10,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       repo_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       team_name: {
         type: Sequelize.STRING

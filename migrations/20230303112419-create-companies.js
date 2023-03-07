@@ -10,7 +10,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       company_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,

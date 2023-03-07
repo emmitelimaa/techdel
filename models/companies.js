@@ -15,6 +15,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Companies.init({
+    // company_id: {
+    //   type: DataTypes.INTEGER,
+    //   autoIncrement: true,
+    //   primaryKey: true
+    // },
     company_name: DataTypes.STRING
   }, {
     sequelize,

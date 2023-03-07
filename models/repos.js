@@ -15,7 +15,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Repos.init({
-    repo_name: DataTypes.STRING
+    // repo_id: {
+    //   type: DataTypes.INTEGER,
+    //   autoIncrement: true,
+    //   primaryKey: true
+    // },
+    repo_name: DataTypes.STRING,
+    team_name: DataTypes.STRING,
+    technology: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Repos',
