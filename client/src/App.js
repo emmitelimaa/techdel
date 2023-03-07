@@ -7,7 +7,9 @@ import Header from "./components/Header";
 import { API } from "./constants";
 import useFetch from "./useFetch";
 import "./App.scss";
+
 function App() {
+
   return (
     <div className="App">
       <Header />

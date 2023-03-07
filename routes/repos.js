@@ -28,9 +28,10 @@ router.post('/', async function(req, res) {
 });
 
 //create company if it doesn't exists, and create repos to that company
-router.post("/:id/repos", async (req, res) => {
-    const { id } = req.params;
-    const { repo_name, team_name, technology, company_name } = req.body;
+router.post("/:company_name/repos", async (req, res) => {
+    const { company_name } = req.params;
+    const { repo_name, team_name, technology } = req.body;
+    //Change company_name back to id
 
     try {
         const [company, created] = await models.Companies.findOrCreate({
@@ -47,7 +48,7 @@ router.post("/:id/repos", async (req, res) => {
 
         res.status(201).send({ company, repo });
     } catch (error) {
-        res.status(500).send({ error: err.message });
+        res.status(500).send({ error });
     }
 });
 

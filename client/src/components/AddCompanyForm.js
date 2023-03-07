@@ -18,8 +18,11 @@ export default function AddCompanyForm() {
     technology: "",
     company_name: "",
   };
+
   const [input, setInput] = useState(FORM_ENTRY);
   const [showSuccess, setShowSuccess] = useState(false);
+
+
   const handleChange = (e) => {
     setInput((state) => ({
       ...state,
@@ -33,25 +36,24 @@ export default function AddCompanyForm() {
     }
     setShowSuccess(false);
   };
-
   
   const handleAutoComplete = (val) => {
     setInput((state) => ({ ...state, technology: val }));
   };
-
 
   const addCompany = async (input) => {
     try {
       let options = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(transformData(input)),
+        body: JSON.stringify(input),
       };
 
-      let response = await fetch(`${API.POST_ALL}`, options);
+      let response = await fetch(`/api/repos/${input.company_name}/repos`, options);
+      console.log(response);
+
       if (response.ok) {
         let listItem = await response.json();
-        //not showing anything after the POST? maybe don't need the line above?
         setShowSuccess(true);
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);

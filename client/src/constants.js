@@ -1,8 +1,8 @@
 export const API = {
-  GET_ALL: "/api/companies",
-  POST_ALL: "/api/companies",
+  GET_ALL: "/companies",
+  POST_ALL: "/companies",
   GET_COMPANY: (id) => {
-    return `/api/companies/${id}`;
+    return `/companies/${id}`;
   },
 };
 

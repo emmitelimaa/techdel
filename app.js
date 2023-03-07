@@ -17,8 +17,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/companies", companiesRouter);
-app.use("/repos", reposRouter);
+app.use("/api/companies", companiesRouter);
+app.use("/api/repos", reposRouter);
 
 // Anything that doesn't match the above, send back index.html
 app.get("*", (req, res) => {
