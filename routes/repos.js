@@ -31,26 +31,39 @@ router.post('/', async function(req, res) {
 router.post("/:company_name/repos", async (req, res) => {
     const { company_name } = req.params;
     const { repo_name, team_name, technology } = req.body;
-    //Change company_name back to id
+    //Change company_name back to id?
 
     try {
-        const [company, created] = await models.Companies.findOrCreate({
+        const [company, companyCreated] = await models.Companies.findOrCreate({
             where: {
                 company_name, 
             },
         });
 
-        const repo = await company.createRepo({ 
-            repo_name, 
-            team_name, 
+        const existingRepo = await models.Repos.findOne({
+            where: {
+              repo_name,
+              team_name,
+              technology,
+              CompanyId: company.id,
+            },
+          });
+      
+          if (existingRepo) {
+            res.status(409).send("Repo already exists");
+            return;
+          }
+      
+          const repo = await company.createRepo({
+            repo_name,
+            team_name,
             technology,
-        });
-
-        res.status(201).send({ company, repo });
-    } catch (error) {
-        res.status(500).send({ error });
-    }
+          });
+      
+          res.status(201).send({ company, repo });
+        } catch (error) {
+          res.status(500).send({ error });
+        }
 });
 
 module.exports = router;
-
